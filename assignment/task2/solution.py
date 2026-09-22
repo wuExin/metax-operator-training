@@ -12,5 +12,10 @@ def tl_add_1d(A, B, BLOCK_N: int):
     # Step 3: 用 T.Parallel 遍历 tile 元素。
     # Step 4: 判断 index < N，保护尾块越界。
     # Step 5: 写回 C[index] = A[index] + B[index]。
-    # TODO: 完成 kernel 实现。
-    raise NotImplementedError("请根据步骤实现 Add")
+    with T.Kernel(T.ceildiv(N, BLOCK_N), threads=128) as bx:
+        base_idx = bx * BLOCK_N
+        for i in T.Parallel(BLOCK_N):
+            index = base_idx + i
+            if index < N:
+                C[index] = A[index] + B[index]
+    return C

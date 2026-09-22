@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# opencode project-local skills (contain instance credentials, never commit)
+.opencode/
+
 # C extensions
 *.so
 

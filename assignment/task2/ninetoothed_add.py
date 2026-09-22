@@ -16,13 +16,15 @@ BLOCK_SIZE = (
 
 
 def arrangement(lhs, rhs, output):
-    # TODO(student): tile lhs, rhs, and output with BLOCK_SIZE.
-    raise NotImplementedError("Complete arrangement().")
+    return (
+        lhs.tile((BLOCK_SIZE,)),
+        rhs.tile((BLOCK_SIZE,)),
+        output.tile((BLOCK_SIZE,)),
+    )
 
 
 def application(lhs, rhs, output):
-    # TODO(student): compute the tile-wise vector addition.
-    raise NotImplementedError("Complete application().")
+    output = lhs + rhs
 
 
 _KERNEL = ninetoothed.make(
